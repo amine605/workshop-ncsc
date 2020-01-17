@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 var AWS = require('aws-sdk');
 const app = express()
-const port = 443
+const port = process.env.PORT;
 AWS.config.loadFromPath('./config.json');
 app.use(bodyParser.json({
     limit: '50mb',
