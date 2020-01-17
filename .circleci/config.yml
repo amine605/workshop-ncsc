@@ -44,7 +44,7 @@ jobs:
 
       # run tests!
       - run: yarn test
-      - vaddy_test: git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
+      - git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
   deploy:
     executor: heroku/default
     steps:
