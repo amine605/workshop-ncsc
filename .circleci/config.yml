@@ -9,9 +9,9 @@ workflows:
   build_deploy:
     jobs:
       - build
-      - deploy_heroku:
-        requires:
-          - build
+      - deploy:
+          requires:
+            - build
     
 jobs:
   build:
