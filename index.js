@@ -6,7 +6,6 @@ const port = process.env.PORT || 80
 
 AWS.config.loadFromPath('./config.json');
 
-
 var entries = []
 app.get('/', (request, response) => {
     const html = `
@@ -40,3 +39,5 @@ app.get('/vaddy-6be70de085b485c.html', (request, response) => {
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+module.exports = app;
