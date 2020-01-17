@@ -41,11 +41,11 @@ jobs:
 
       # run tests!
       - run: yarn test
+      - vaddy_test: git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
   deploy:
     executor: heroku/default
     steps:
       - checkout
-      - git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit 
       - heroku/install
       - heroku/deploy-via-git:
           only-branch: master
