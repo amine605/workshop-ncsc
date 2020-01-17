@@ -6,6 +6,9 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
 workflows:
+  test:
+    jobs:
+      - build
   heroku_deploy:
     jobs:
       - deploy
@@ -24,6 +27,7 @@ jobs:
 
     steps:
       - checkout
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -32,17 +36,18 @@ jobs:
             - v1-dependencies-
 
       - run: yarn install
+
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
       # run tests!
-      - git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
+      - run: yarn test
   deploy:
     executor: heroku/default
     steps:
       - checkout
-      - git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
       - heroku/install
       - heroku/deploy-via-git:
           only-branch: master
