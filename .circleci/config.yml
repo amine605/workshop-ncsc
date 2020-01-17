@@ -47,9 +47,9 @@ jobs:
       # run tests!
       - run: yarn test
   vaddy:
-    branch: master
-    commands:
-      - git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
 
     
   deploy:
