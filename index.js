@@ -1,7 +1,7 @@
 const express = require('express')
 var AWS = require('aws-sdk');
 const app = express()
-const port = process.env.PORT || 80
+const port = process.env.PORT || 8080
 
 
 AWS.config.loadFromPath('./config.json');
