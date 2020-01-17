@@ -9,7 +9,7 @@ workflows:
   build_deploy:
     jobs:
       - build
-      -deploy_heroku:
+      - deploy_heroku:
         requires:
           - build
     
