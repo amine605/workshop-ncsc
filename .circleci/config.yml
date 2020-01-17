@@ -8,8 +8,11 @@ orbs:
 workflows:
   build_deploy:
     jobs:
-      - deploy
       - build
+      -deploy_heroku:
+        requires:
+          - build
+    
 jobs:
   build:
     docker:
