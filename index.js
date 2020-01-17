@@ -38,8 +38,8 @@ app.get('/store', (request, response) => {
     entries.push(value)
     response.redirect('/')
 })
-app.get('/robots.txt', (request, response) => {
-    response.send('/\n/store')
+app.get('/vaddy-6be70de085b485c.html', (request, response) => {
+    response.send('6be70de085b485c')
 })
 app.listen(port, '0.0.0.0', () => console.log(`Example app listening on port ${port}!`))
 
