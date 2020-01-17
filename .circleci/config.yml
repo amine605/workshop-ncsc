@@ -9,10 +9,15 @@ workflows:
   build_deploy:
     jobs:
       - build
-      - vaddy
-      - deploy:
+      - deploy_staging:
           requires:
             - build
+      - vaddy:
+        requires:
+          - deploy_staging
+      - deploy_production:
+        requires:
+          - deploy_production
     
 jobs:
   build:
@@ -53,11 +58,17 @@ jobs:
     steps:
       - run: git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
     
-  deploy:
+  deploy_staging:
     executor: heroku/default
     steps:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
           only-branch: master
-
+  deploy_production:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          only-branch: master
