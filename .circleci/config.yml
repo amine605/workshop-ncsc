@@ -13,11 +13,11 @@ workflows:
           requires:
             - build
       - vaddy:
-        requires:
-          - deploy_staging
+          requires:
+            - deploy_staging
       - deploy_production:
-        requires:
-          - deploy_production
+          requires:
+            - deploy_production
     
 jobs:
   build:
