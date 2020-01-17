@@ -9,7 +9,7 @@ workflows:
   build_deploy:
     jobs:
       - build
-      - vaddy_test
+      - vaddy
       - deploy:
           requires:
             - build
@@ -46,7 +46,7 @@ jobs:
 
       # run tests!
       - run: yarn test
-  vaddy_test:
+  vaddy:
     - steps:
       - run: git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
     
