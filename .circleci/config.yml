@@ -16,8 +16,8 @@ workflows:
           requires:
             - deploy_staging
       - deploy_production:
-          requires:
-            - vaddy
+          # requires:
+          #   - vaddy
     
 jobs:
   build:
@@ -66,6 +66,8 @@ jobs:
       - heroku/deploy-via-git:
           only-branch: master
   deploy_production:
+    environment:
+      HEROKU_APP_NAME: production-workshop
     executor: heroku/default
     steps:
       - checkout
