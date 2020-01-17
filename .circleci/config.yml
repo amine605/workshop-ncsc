@@ -9,6 +9,7 @@ workflows:
   build_deploy:
     jobs:
       - build
+      - vaddy_test
       - deploy:
           requires:
             - build
