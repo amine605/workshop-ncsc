@@ -1,5 +1,7 @@
 const express = require('express')
-var AWS = require('aws-sdk');
+const AWS = require('aws-sdk');
+const sanitizer = require('sanitizer');
+
 const app = express()
 const port = process.env.PORT || 8080
 
@@ -13,7 +15,7 @@ app.get('/', (request, response) => {
                 <input type="text" name=value></input>
             </form>
             <ul>
-                ${entries.map((value) => '<li>' + value + '</li>')}
+                ${entries.map((value) => '<li>' + sanitizer.escape(value) + '</li>')}
             </ul>
         </body>
     </html>
