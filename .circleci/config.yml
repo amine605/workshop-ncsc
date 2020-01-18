@@ -56,8 +56,8 @@ jobs:
       - run:
           name: Installing Git Secrets
           command: |
-            git clone https://github.com/sobolevn/git-secret.git git-secret
-            cd git-secret && sudo make build
+            git clone https://github.com/awslabs/git-secrets.git git-secrets
+            cd git-secrets && sudo make build
             sudo make install
       - run:
           name: Adding Git Secrets providers
