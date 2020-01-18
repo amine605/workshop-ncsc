@@ -15,9 +15,9 @@ workflows:
       - vaddy:
           requires:
             - deploy_staging
-      - deploy_production
-        # requires:
-        #   - vaddy
+      - deploy_production:
+          requires:
+            - vaddy
 
 jobs:
   build:
