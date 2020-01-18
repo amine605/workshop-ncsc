@@ -15,7 +15,7 @@ app.get('/', (request, response) => {
                 <input type="text" name=value></input>
             </form>
             <ul>
-                ${entries.map((value) => '<li>' + sanitizer.escape(value) + '</li>')}
+                ${entries.map((value) => '<li>' + sanitizer.escape(value) + '</li>').join('')}
             </ul>
         </body>
     </html>
