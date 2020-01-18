@@ -15,6 +15,7 @@ workflows:
           requires:
             - build
             - inheritance_security_check
+            - secrets_check
       - vaddy:
           requires:
             - deploy_staging
@@ -59,15 +60,13 @@ jobs:
           name: Installing Git Secrets
           command: |
             git clone https://github.com/awslabs/git-secrets.git git-secrets
-            cd git-secrets && sudo make install && cd ..
+            cd git-secrets && sudo make install && cd .. && rm -rf git-secrets
       - run:
           name: Adding Git Secrets providers
           command: "git secrets --add-provider -- git secrets --aws-provider"
       - run:
           name: Secrets check
-          command: |
-            git log
-            git secrets --scan
+          command: "git secrets --scan"
 
   vaddy:
     docker:
