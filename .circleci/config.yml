@@ -63,7 +63,7 @@ jobs:
             cd git-secrets && sudo make install && cd .. && rm -rf git-secrets
       - run:
           name: Adding Git Secrets providers
-          command: "git secrets --add-provider -- git secrets --aws-provider"
+          command: "git secrets --register-aws"
       - run:
           name: Secrets check
           command: "git secrets --scan"
