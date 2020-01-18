@@ -57,8 +57,7 @@ jobs:
           name: Installing Git Secrets
           command: |
             git clone https://github.com/awslabs/git-secrets.git git-secrets
-            cd git-secrets && sudo make build
-            sudo make install
+            cd git-secrets && sudo make install
       - run:
           name: Adding Git Secrets providers
           command: "git secrets --add-provider -- git secrets --aws-provider"
