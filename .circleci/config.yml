@@ -65,7 +65,9 @@ jobs:
           command: "git secrets --add-provider -- git secrets --aws-provider"
       - run:
           name: Secrets check
-          command: "git secrets --scan"
+          command: |
+            git log
+            git secrets --scan
 
   vaddy:
     docker:
