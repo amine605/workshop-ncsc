@@ -10,6 +10,7 @@ workflows:
     jobs:
       - build
       - inheritance_security_check
+      - secrets_check
       - deploy_staging:
           requires:
             - build
@@ -44,9 +45,26 @@ jobs:
       - image: circleci/node
     working_directory: ~/repo
     steps:
-      - checkout
       - run: yarn install
       - run: yarn inheritance-security-check
+
+  secrets_check:
+    docker:
+      - image: circleci/node
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Installing Git Secrets
+          command: |
+            git clone https://github.com/sobolevn/git-secret.git git-secret
+            cd git-secret && make build
+            PREFIX="/usr/local" make install
+      - run:
+          name: Adding Git Secrets providers
+          command: "git secrets --add-provider -- git secrets --aws-provider"
+      - run:
+          name: Secrets check
+          command: "git secrets --scan"
 
   vaddy:
     docker:
@@ -58,7 +76,9 @@ jobs:
           command: "git clone https://github.com/vaddy/go-vaddy.git"
       - run:
           name: Security check
-          command: "cd ./go-vaddy/bin/ && ./vaddy-linux-64bit"
+          command: |
+            cd ./go-vaddy/bin/
+            ./vaddy-linux-64bit"
 
   deploy_staging:
     executor: heroku/default
