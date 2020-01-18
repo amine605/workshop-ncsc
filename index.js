@@ -38,6 +38,6 @@ app.get('/vaddy-6be70de085b485c.html', (request, response) => {
     response.send('6be70de085b485c')
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-module.exports = app;
+module.exports = server;
