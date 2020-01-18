@@ -3,9 +3,6 @@ var AWS = require('aws-sdk');
 const app = express()
 const port = process.env.PORT || 8080
 
-
-AWS.config.loadFromPath('./config.json');
-
 var entries = []
 app.get('/', (request, response) => {
     const html = `
