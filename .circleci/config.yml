@@ -16,9 +16,9 @@ workflows:
           requires:
             - deploy_staging
       - deploy_production
-          # requires:
-          #   - vaddy
-    
+        # requires:
+        #   - vaddy
+
 jobs:
   build:
     docker:
@@ -54,10 +54,15 @@ jobs:
   vaddy:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node
     steps:
-      - run: git clone https://github.com/vaddy/go-vaddy.git && cd ./go-vaddy/bin/ && ./vaddy-linux-64bit
-    
+      - run:
+          name: Cloning Vaddy
+          command: "git clone https://github.com/vaddy/go-vaddy.git"
+      - run:
+          name: Security check
+          command: "cd ./go-vaddy/bin/ && ./vaddy-linux-64bit"
+
   deploy_staging:
     executor: heroku/default
     steps:
